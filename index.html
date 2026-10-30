@@ -5,115 +5,263 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Cavae Inanis Labs</title>
 <meta name="description" content="Independent apps made with care. No ads, no accounts, no data sold.">
+<meta name="theme-color" content="#0A0806">
+<meta property="og:type" content="website">
 <meta property="og:title" content="Cavae Inanis Labs">
 <meta property="og:description" content="Independent apps made with care. No ads, no accounts, no data sold.">
-<meta property="og:image" content="https://cavaeinanis-tech.github.io/developer-header.jpg">
-<meta property="og:type" content="website">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 108 108'%3E%3Crect width='108' height='108' fill='%230A0806'/%3E%3Cpath d='M 54,27 L 77.383,67.5 L 30.617,67.5 Z' fill='none' stroke='%23C9A24A' stroke-width='4' stroke-linejoin='round'/%3E%3Ccircle cx='54' cy='54' r='7.695' fill='none' stroke='%23C9A24A' stroke-width='4'/%3E%3C/svg%3E">
+<meta property="og:url" content="https://cavaeinanis-tech.github.io/">
+<meta property="og:image" content="https://cavaeinanis-tech.github.io/img/developer-header.jpg">
+<meta name="twitter:card" content="summary_large_image">
+
+<link rel="icon" href="img/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="img/favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="img/apple-touch-icon.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600&family=Inter:wght@400;500&display=swap">
+
 <style>
   :root {
-    --bg: #0A0806;
-    --fg: #ECE6DC;
-    --muted: #9A9183;
-    --rule: #2A2219;
-    --gold: #C9A24A;
+    /* Sampled from the app icon: ground #0A0806, mark #C9A24A. */
+    --bg:      #0A0806;
+    --surface: #120E0A;
+    --fg:      #ECE6DC;   /* 16.1:1 on --bg */
+    --muted:   #B5AA98;   /*  8.7:1 on --bg */
+    --gold:    #C9A24A;   /*  8.3:1 on --bg */
+    --gold-hi: #E0BC68;   /* 11.0:1 on --bg */
+    --rule:    rgba(201, 162, 74, 0.18);
+    --serif: "Cormorant Garamond", Georgia, "Times New Roman", serif;
+    --sans: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
   }
+
   * { box-sizing: border-box; }
-  html, body {
+
+  html {
+    background: var(--bg);
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
     margin: 0;
-    padding: 0;
     background: var(--bg);
     color: var(--fg);
-  }
-  body {
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-    line-height: 1.6;
+    font-family: var(--sans);
     font-size: 17px;
+    line-height: 1.65;
     -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
+
   main {
-    max-width: 620px;
+    max-width: 760px;
     margin: 0 auto;
-    padding: 0 1.25rem 4rem;
+    padding: 0 1.5rem;
+  }
+
+  a {
+    color: var(--gold);
+    text-decoration-color: var(--rule);
+    text-underline-offset: 0.2em;
+    transition: color 120ms ease;
+  }
+  a:hover { color: var(--gold-hi); }
+  a:focus-visible {
+    outline: 2px solid var(--gold-hi);
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+
+  img { max-width: 100%; height: auto; }
+
+  /* ---------- hero ---------- */
+
+  .hero {
     text-align: center;
+    padding: clamp(3.5rem, 12vw, 6.5rem) 0 clamp(2.5rem, 8vw, 4rem);
   }
-  .mark {
-    display: block;
-    width: 100%;
-    max-width: 520px;
+
+  .hero-mark {
+    width: clamp(104px, 22vw, 156px);
     height: auto;
-    margin: 2.5rem auto 0;
+    display: block;
+    margin: 0 auto clamp(1.5rem, 4vw, 2.25rem);
   }
+
   h1 {
-    font-size: 1.75rem;
+    font-family: var(--serif);
     font-weight: 600;
-    letter-spacing: 0.02em;
-    margin: 1.5rem 0 0.75rem;
+    font-size: clamp(2.3rem, 9vw, 3.5rem);
+    line-height: 1.1;
+    letter-spacing: 0.01em;
+    margin: 0 0 clamp(0.75rem, 2vw, 1rem);
   }
+
   .tagline {
+    font-size: clamp(1rem, 2.6vw, 1.1rem);
     color: var(--muted);
-    margin: 0 auto 2.5rem;
     max-width: 30rem;
+    margin: 0 auto;
+    text-wrap: balance;
   }
-  .apps {
-    border-top: 1px solid var(--rule);
-    padding-top: 2.5rem;
+
+  /* A single hairline with the mark's gold, used to separate sections. */
+  .rule {
+    border: 0;
+    height: 1px;
+    background: linear-gradient(to right,
+      transparent, var(--rule) 20%, var(--rule) 80%, transparent);
+    margin: 0;
   }
-  .app-name {
-    font-size: 1.15rem;
+
+  /* ---------- app card ---------- */
+
+  .apps { padding: clamp(2.5rem, 8vw, 4rem) 0; }
+
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--rule);
+    border-radius: 14px;
+    padding: clamp(1.5rem, 5vw, 2.5rem);
+  }
+
+  .card-head {
+    display: flex;
+    align-items: center;
+    gap: clamp(1rem, 3vw, 1.4rem);
+    margin-bottom: 1.5rem;
+  }
+
+  .card-icon {
+    flex: 0 0 auto;
+    width: clamp(64px, 16vw, 80px);
+    height: auto;
+    border-radius: 16px;
+    border: 1px solid var(--rule);
+  }
+
+  h2 {
+    font-family: var(--serif);
     font-weight: 600;
-    margin: 0 0 0.35rem;
+    font-size: clamp(1.5rem, 5vw, 1.9rem);
+    line-height: 1.2;
+    margin: 0 0 0.3rem;
   }
-  .app-blurb {
+
+  .card-desc {
     color: var(--muted);
-    font-size: 0.95rem;
-    margin: 0 0 1.25rem;
+    font-size: 0.98rem;
+    margin: 0;
   }
-  .badge {
-    display: inline-block;
-    line-height: 0;
+
+  /* Three phone screenshots. All three sit in a row on a wide screen; on a
+     phone they become a swipeable, snapping strip. */
+  .shots {
+    display: flex;
+    gap: clamp(0.6rem, 2vw, 1rem);
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    margin: 0 0 1.75rem;
+    padding-bottom: 0.25rem;
+    scrollbar-width: none;
   }
+  .shots::-webkit-scrollbar { display: none; }
+
+  .shots img {
+    flex: 0 0 auto;
+    width: clamp(148px, 50vw, 198px);
+    border-radius: 9px;
+    border: 1px solid var(--rule);
+    scroll-snap-align: center;
+  }
+
+  .badge { display: inline-block; line-height: 0; }
   .badge img {
-    height: 60px;
+    /* Google's own badge asset, unmodified, with its built-in clear space. */
+    height: 68px;
     width: auto;
   }
+  .badge:focus-visible { outline-offset: 0; }
+
+  /* ---------- footer ---------- */
+
   footer {
-    margin-top: 3rem;
-    padding-top: 1.5rem;
-    border-top: 1px solid var(--rule);
+    padding: clamp(2.5rem, 7vw, 3.5rem) 0 clamp(3rem, 8vw, 4.5rem);
+    text-align: center;
     color: var(--muted);
-    font-size: 0.9rem;
+    font-size: 0.92rem;
   }
-  footer p { margin: 0.4rem 0; }
-  a { color: var(--gold); }
-  a:hover { color: #E0BC68; }
-  @media (max-width: 480px) {
-    h1 { font-size: 1.45rem; }
-    .mark { margin-top: 1.5rem; }
-    .badge img { height: 52px; }
+  footer p { margin: 0 0 0.55rem; }
+  footer .legal {
+    margin-top: 1.5rem;
+    font-size: 0.8rem;
+    color: var(--muted);
+    opacity: 0.75;
+  }
+
+  @media (max-width: 460px) {
+    .card-head { flex-direction: column; text-align: center; gap: 1rem; }
+    .card { text-align: center; }
+    .badge img { height: 60px; }
   }
 </style>
 </head>
 <body>
 <main>
-  <img class="mark" src="developer-header.jpg" alt="Cavae Inanis Labs">
 
-  <h1>Cavae Inanis Labs</h1>
-  <p class="tagline">Independent apps made with care. No ads, no accounts, no data sold.</p>
+  <header class="hero">
+    <svg class="hero-mark" viewBox="24 17.25 60 60" role="img"
+         aria-label="Cavae Inanis Labs mark: a triangle with a circle at its centre">
+      <path d="M 54,27 L 77.383,67.5 L 30.617,67.5 Z" fill="none"
+            stroke="#C9A24A" stroke-width="2.4" stroke-linejoin="round"/>
+      <circle cx="54" cy="54" r="7.695" fill="none"
+              stroke="#C9A24A" stroke-width="2.4"/>
+    </svg>
+    <h1>Cavae Inanis Labs</h1>
+    <p class="tagline">Independent apps made with care. No ads, no accounts, no data sold.</p>
+  </header>
+
+  <hr class="rule">
 
   <section class="apps">
-    <p class="app-name">Goetic Companion</p>
-    <p class="app-blurb">A careful, sourced reference and practice companion for the Lesser Key of Solomon.</p>
-    <a class="badge"
-       href="https://play.google.com/store/apps/details?id=com.cavaeinanis.goeticcompanion">
-      <img alt="Get it on Google Play" src="google-play-badge.png" width="646" height="250">
-    </a>
+    <article class="card">
+      <div class="card-head">
+        <img class="card-icon" src="img/app-icon-256.png" alt="" width="256" height="256">
+        <div>
+          <h2>Goetic Companion</h2>
+          <p class="card-desc">A sourced reference and practice companion for the Ars
+            Goetia — all 72 spirits, a cited library, a guided working, and a private
+            journal, entirely offline.</p>
+        </div>
+      </div>
+
+      <div class="shots">
+        <img src="img/shot-browse.png" width="460" height="818"
+             alt="Browsing the catalogue of spirits" loading="lazy">
+        <img src="img/shot-spirit.png" width="460" height="818"
+             alt="A spirit's page, showing its engraving and seal" loading="lazy">
+        <img src="img/shot-library.png" width="460" height="818"
+             alt="A library article on the history of the Ars Goetia" loading="lazy">
+      </div>
+
+      <a class="badge"
+         href="https://play.google.com/store/apps/details?id=com.cavaeinanis.goeticcompanion">
+        <img src="img/google-play-badge.png" width="646" height="250"
+             alt="Get it on Google Play">
+      </a>
+    </article>
   </section>
+
+  <hr class="rule">
 
   <footer>
     <p><a href="mailto:cavae.inanis@gmail.com">cavae.inanis@gmail.com</a></p>
-    <p><a href="https://cavaeinanis-tech.github.io/goetic-companion-privacy/">Goetic Companion privacy policy</a></p>
+    <p><a href="https://cavaeinanis-tech.github.io/goetic-companion-privacy/">Goetic
+      Companion privacy policy</a></p>
+    <p>© 2026 Cavae Inanis Labs</p>
+    <p class="legal">Google Play and the Google Play logo are trademarks of Google LLC.</p>
   </footer>
+
 </main>
 </body>
 </html>
